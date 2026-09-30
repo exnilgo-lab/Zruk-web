@@ -1,0 +1,140 @@
+{
+  "games": [
+    {
+      "id": "game1",
+      "title": "Juego 1",
+      "subtitle": "La primera historia de Zruk",
+      "intro": "Lo esencial del Juego 1, historia, personajes, sistemas...",
+      "pages": [
+        {
+          "id": "historia",
+          "title": "Historia",
+          "icon": "📖",
+          "text": "Historia y acontecimientos (Juego 1)",
+          "content": "El Game 1 comienza con dos posibles protagonistas: Mizuhi y Exnilgo. Sus rutas iniciales son diferentes y más adelante se unen en una historia compartida.\n\n\n\n## Historia\n\nEn un mundo donde el **Zruk** forma parte de la naturaleza y de los seres vivos, existen personas capaces de utilizarlo de forma innata: los **Zruk-natos**. Son extremadamente poco comunes y poseen capacidades que superan a las de una persona normal.\n\nLa historia comienza en un reino donde el rey ha comenzado a perseguir y capturar Zruk-natos. Su objetivo es utilizar su Zruk para obtener enormes cantidades de energía y crear **Zruk-artificiales**, humanos a los que se les implanta Zruk para convertirlos en soldados.\n\nEl juego comienza desde la perspectiva de **Exnilgo** o **Mizuhi**, dos hermanos Zruk-natos. Dependiendo del personaje elegido, el jugador vive una primera parte de la historia diferente.\n\nExnilgo es perseguido por soldados del reino y consigue escapar después de enfrentarse a ellos. Al llegar a un bosque se encuentra con **Aiko**, una vieja amiga que le explica lo que está ocurriendo y por qué el rey está buscando a los Zruk-natos. Ambos deciden buscar a otras personas que puedan ayudarles.\n\nPor otro lado, Mizuhi consigue escapar de los soldados que han ido a buscarlo y decide encontrar a **Kurona**, su amigo desde pequeño. Mizuhi no conoce todavía el motivo por el que el reino los persigue, pero sospecha que está ocurriendo algo importante y comienza a reunir aliados para prepararse.\n\nLas dos rutas avanzan de manera diferente. Mientras Exnilgo y Aiko se enfrentan principalmente a miembros y fuerzas relacionadas con el reino, Mizuhi y sus compañeros se encuentran con poderosos monstruos y diferentes peligros del mundo.\n\nFinalmente, las dos rutas se encuentran. Exnilgo y Mizuhi se enfrentan entre ellos al principio, ya que todavía no están del mismo lado, pero el combate termina en empate. Mizuhi demuestra que puede ayudar y ambos hermanos terminan uniéndose junto con sus compañeros.\n\nEl grupo establece una base desde la que puede prepararse, descansar y organizar sus siguientes misiones. A partir de ese momento, los personajes avanzan juntos hasta enfrentarse al responsable de todo: **el rey**.\n\nTras una batalla contra él, el grupo consigue derrotarlo. Sin embargo, cuando parece que todo ha terminado, una misteriosa figura aparece entre las sombras. Afirma que han hecho un buen trabajo, aunque no suficiente, y desaparece llevándose consigo todo el material y los Zruk-natos (usados de experimentp) presentes en el lugar.\n\nLa historia termina aquí, dejando abierta la pregunta de quién es esa figura y qué pretende hacer con los natos que ha capturado.\n",
+          "order": 1
+        },
+        {
+          "id": "personajes",
+          "title": "Personajes",
+          "icon": "👥",
+          "text": "Personajes principales y secundarios.",
+          "content": "Aquí se encuentran las fichas de los personajes.",
+          "order": 2
+        },
+        {
+          "id": "mecanicas",
+          "title": "Mecánicas",
+          "icon": "⚙️",
+          "text": "Sistemas jugables y reglas.",
+          "content": "## Mecánicas\n\nEl sistema de combate y progresión del se basa principalmente en el uso del **Zruk**, las habilidades individuales de cada personaje, sus armas y sus **Encarnaciones**.\n\n### Combate\n\nCada personaje tiene un estilo de combate diferente dependiendo de sus habilidades, elementos y arma. Durante los combates, los personajes pueden recibir daño, pero normalmente no mueren.\n\nCuando la vida llega a su mínimo (1HP), el personaje entra en estado **K.O.**, quedando incapacitado durante el combate. Los objetos de revivir funcionan porque el K.O. no representa una muerte real.\n\nEl **0 de vida** solamente aparece en situaciones de historia en las que un personaje realmente va a morir, por lo que alcanzar 0 HP tiene consecuencias narrativas y no es lo mismo que un K.O. normal.\n\n### Habilidades\n\nCada usuario de Zruk posee una capacidad propia relacionada con su Zruk. Estas habilidades funcionan de forma diferente según el personaje y pueden afectar tanto al combate como a la exploración.\n\nLas habilidades también pueden tener mecánicas propias. Por ejemplo, **Exnilgo** puede aumentar progresivamente su velocidad y la fuerza de sus golpes al mantener determinadas acciones consecutivas.\n\n### Armas\n\nLos personajes pueden utilizar diferentes armas que complementan sus habilidades. Algunas armas pueden subir de nivel y existen armas especiales o secretas que no forman parte de la progresión principal.\n\nPara determinadas Encarnaciones es necesario alcanzar el nivel máximo de todas las armas normales del personaje correspondiente.\n\n### Encarnaciones\n\nTodo **Zruk-nato** posee una Encarnación. Se trata de un ser o entidad que nace junto al Zruk-nato y que está vinculada exclusivamente a él.\n\nLas Encarnaciones son inteligentes y pueden tener habilidades propias. Algunas permanecen junto a su usuario, mientras que otras pueden actuar de manera independiente.\n\nEn el juego 1, determinadas Encarnaciones pueden encontrarse de forma secreta en el mapa después de cumplir ciertos requisitos. No aparecen marcadas en el mapa ni se recibe una notificación cuando aparecen.\n\nLas Encarnaciones normales proporcionan efectos especiales. Algunas pueden tener mecánicas adicionales, como la posibilidad de fusionarse con su usuario.\n\n### Amplificación\n\nLa **Amplificación** es una mecánica diferente de la Encarnación. Cada personaje posee una Amplificación propia que permite realizar una acción o ataque especialmente poderoso.\n\nSu funcionamiento depende del personaje. Por ejemplo, Mizuhi puede generar chorros de agua hirviendo a presión, mientras que Aiko puede crear un área que cura a los aliados y perjudica a los enemigos.\n\n### Elementos\n\nLos personajes capaces de utilizar elementos tienen diferentes niveles de especialización dependiendo de cuántos elementos dominan.\n\nLa clasificación es:\n\n* **1 elemento:** elemento avanzado.\n* **2 elementos:** elementos semi-avanzados.\n* **3 elementos:** elementos básicos altos.\n* **4 elementos:** elementos básicos.\n* **5 elementos:** elementos básicos bajos.\n* **Todos los elementos:** elementos simples.\n\nTener acceso a todos los elementos no significa ser automáticamente más poderoso. Algunos personajes necesitan utilizar piedras elementales u otros métodos para acceder a determinados elementos.\n\n### Progresión\n\nLa progresión combina el desarrollo de personajes, las armas, las habilidades, las Encarnaciones y la exploración del mundo.\n\nAdemás de la ruta principal, existen secretos y contenidos opcionales que pueden desbloquear nuevas posibilidades sin ser necesarios para completar la historia principal.\n",
+          "order": 3
+        },
+        {
+          "id": "zruk",
+          "title": "Sistema Zruk",
+          "icon": "✦",
+          "text": "La energía Zruk y sus categorías.",
+          "content": "El **Zruk** es la energía que existe en el mundo y está presente tanto en la naturaleza como en determinados seres vivos. Puede encontrarse de forma natural o ser utilizado artificialmente por los humanos.\n\nExisten cuatro grandes categorías relacionadas con el Zruk:\n\n### Zruk natural\n\nEl Zruk puede encontrarse de forma natural en elementos del mundo, como determinadas piedras, plantas y fenómenos naturales.\n\nLos seres humanos pueden utilizar estas fuentes para obtener energía mediante diferentes métodos.\n\n### Monstruos mágicos\n\nSon seres que viven en lugares donde no existe una presencia humana constante, como bosques, desiertos u océanos.\n\nEstos monstruos poseen Zruk y pueden tener capacidades especiales. Algunos son hostiles, mientras que otros pueden ser amistosos.\n\n### Zruk-natos\n\nSon personas que nacen con la capacidad natural de utilizar Zruk. Son poco comunes y sus capacidades dependen de sus características individuales.\n\nTodo **Zruk-nato posee una Encarnación**, una entidad que nace vinculada exclusivamente a él.\n\nLos personajes principales del juego 1, como Exnilgo, Mizuhi, Aiko, Ryuji y Kurona, pertenecen a este grupo.\n\n### Zruk-artificiales\n\nSon humanos que tienen una compatibilidad parcial con el Zruk y reciben una cantidad de Zruk implantada artificialmente.\n\nGeneralmente son menos poderosos que los Zruk-natos, ya que no nacen con Zruk de forma natural.\n\nEl reino utiliza Zruk-natos como fuente para crear estos soldados artificiales.\n\n---\n\n## Genética del Zruk\n\nLa capacidad de convertirse en Zruk-nato, Zruk-artificial o una persona normal está relacionada con la genética.\n\nSin embargo, la herencia no es completamente predecible. Las distintas combinaciones entre personas normales, Zruk-natos y Zruk-artificiales pueden producir diferentes resultados.\n\nPor ello, tener padres de un determinado tipo no garantiza que un hijo pertenezca exactamente al mismo grupo.\n\n---\n\n## Elementos\n\n\nEn el caso de ciertos personajes, dos elementos pueden combinarse para producir efectos diferentes a los que tendría cada elemento por separado.\n",
+          "order": 4
+        },
+        {
+          "id": "mundo",
+          "title": "Mundo //",
+          "icon": "🌍",
+          "text": "Lugares, reinos y zonas naturales.",
+          "content": "El Game 1 comienza alrededor del reino y después lleva a los personajes hacia pueblos, bosques, cuevas, montañas y otras zonas naturales. /apartado pendiente/",
+          "order": 5
+        },
+        {
+          "id": "final",
+          "title": "Final",
+          "icon": "👑",
+          "text": "Final del Game 1.",
+          "content": "### El final\n\nTras derrotar al rey, el protagonista queda inconsciente. Entonces aparece una misteriosa figura en forma de sombra que afirma que lo ocurrido no ha sido suficiente.\n\nLa figura desaparece llevándose consigo todo el material y a los **Zruk-natos** con los que experimentaron del lugar. Su identidad y sus verdaderas intenciones permanecen desconocidas.\n",
+          "order": 6
+        },
+        {
+          "id": "pendientes",
+          "title": "Ideas / Pendiente",
+          "icon": "📝",
+          "text": "Cosas todavía por decidir.",
+          "content": "Aquí puedes anotar mecánicas, escenas, personajes o detalles que aún estén en desarrollo. (se marcara con // los apartados pendientes)",
+          "order": 8
+        }
+      ],
+      "characters": [
+        {
+          "id": "exnilgo",
+          "name": "Exnilgo",
+          "age": "16",
+          "type": "Zruk-nato",
+          "role": "Protagonista",
+          "element": "Mejorar / energía turquesa",
+          "weapon": "Katana",
+          "enc": "Niru",
+          "amp": "Area de mejora, mejora a todos los aliados de dentro",
+          "personality": "Le gusta luchar, se burla de enemigos y compañeros y puede arriesgarse demasiado encadenando golpes.",
+          "text": "Puede mejorar velocidad, fuerza, sentidos y capacidades físicas. Los golpes consecutivos aumentan Mejorar y la energía turquesa. Cerca del límite su cuerpo se llena de energía y puede perder el control del ataque encadenado.",
+          "image": "https://www.image2url.com/r2/default/images/1790795630864-bc9a506c-bdfa-4bb3-9919-768238c35ab7.jpeg"
+        },
+        {
+          "id": "mizuhi",
+          "name": "Mizuhi",
+          "age": "14",
+          "type": "Zruk-nato",
+          "role": "Protagonista",
+          "element": "Fuego + agua",
+          "weapon": "Nunchakus",
+          "enc": "Águila",
+          "amp": "Chorros de agua hirviendo a presión",
+          "personality": "Alegre fuera del combate, serio luchando y muy vago. Puede quedarse dormido durante el combate.",
+          "text": "Puede combinar fuego y agua para crear vapor y ocultarse. También puede crear alas de fuego y agua y volar mediante cambios de temperatura.",
+          "image": "https://www.image2url.com/r2/default/images/1790796302287-70521765-74d9-453d-97c8-3b718f8029cc.jpeg"
+        },
+        {
+          "id": "aiko",
+          "name": "Aiko",
+          "age": "16",
+          "type": "Zruk-nata",
+          "role": "Aliada",
+          "element": "Plantas",
+          "weapon": "Dagas",
+          "enc": "Perro",
+          "amp": "Área de curación para aliados que envenena a enemigos",
+          "personality": "Distraida, aveces cuando usa su habilidad, crea un muñeco con plantas que hace que se distraiga",
+          "text": "Crea enredaderas y plantas para atacar o atrapar. Puede crear bayas de parálisis, veneno y curación. Su Encarnación permite crear plantas especiales.",
+          "image": "https://www.image2url.com/r2/default/images/1790795912413-3e5df0a0-5c8c-4f78-aa0c-ae28f0886dd3.jpeg"
+        },
+        {
+          "id": "ryuji",
+          "name": "Ryuji",
+          "age": "17",
+          "type": "Zruk-nato",
+          "role": "Aliado",
+          "element": "Elementos",
+          "weapon": "Piedras elementales",
+          "enc": "Dragón",
+          "amp": "Todos los elementos desbloqueados simultáneamente",
+          "personality": "Es bastante mugeriego, siempre intenta hablar con las mujeres",
+          "text": "Usa piedras elementales colocadas en su colgante. Su Encarnación permite usar dos elementos a la vez, uno mediante el dragón y otro mediante él mismo.",
+          "image": "https://www.image2url.com/r2/default/images/1790796161153-b4c8d795-1100-47bf-aa3d-a615f5a52ea2.jpeg"
+        },
+        {
+          "id": "kurona",
+          "name": "Kurona",
+          "age": "17",
+          "type": "Zruk-nato",
+          "role": "Aliado",
+          "element": "Cereacion de flechas",
+          "weapon": "Arco",
+          "enc": "Cuervo",
+          "amp": "Flechas explosivas alrededor de enemigos",
+          "personality": "Nervioso y asustadizo ante el peligro. Si su vida se reduce un cuarto, salen los bordes oscuros para provocar estres",
+          "text": "Crea flechas de diferentes tamaños y funciones y puede moverlas ligeramente con la mente para hacer curvas.",
+          "image": "https://www.image2url.com/r2/default/images/1790795745954-e167a997-aafa-48d3-8a85-fd3d1c84cdbc.jpeg"
+        }
+      ]
+    }
+  ]
+}
