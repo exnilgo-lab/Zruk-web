@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zruk Wiki</title>
+<style>
+:root{--bg:#080b12;--panel:#101621;--panel2:#151d2a;--line:#263247;--text:#edf3ff;--muted:#98a7bd;--turq:#21e6d0;--purple:#a879ff;--danger:#ff5d6c}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top,#152132,#080b12 48%);color:var(--text)}
+button,input,textarea{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}
+.sidebar{width:280px;background:#080b12ee;border-right:1px solid var(--line);padding:22px 16px;position:sticky;top:0;height:100vh;overflow:auto}
+.logo{font-size:26px;font-weight:900}.logo span{color:var(--turq)}.subtitle{color:var(--muted);font-size:12px;margin:5px 0 22px}
+.tree{display:grid;gap:5px}.tree button{border:0;background:transparent;color:var(--muted);padding:10px 12px;border-radius:9px;text-align:left}.tree button:hover,.tree button.active{background:var(--panel2);color:#fff}.tree .game{color:#fff;font-weight:800;border-left:3px solid var(--turq)}.tree .child{padding-left:28px;font-size:14px}
+.sidebar-bottom{margin-top:25px;border-top:1px solid var(--line);padding-top:15px;display:grid;gap:8px}
+.btn{border:1px solid var(--line);background:var(--panel);color:#fff;padding:9px 12px;border-radius:9px}.btn:hover{background:var(--panel2)}.btn.primary{background:linear-gradient(135deg,#159f98,#21e6d0);color:#06100f;border:0;font-weight:800}.btn.danger{color:#ff9ba4}
+.main{flex:1;min-width:0}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 28px;background:#080b12bb;backdrop-filter:blur(12px);position:sticky;top:0;z-index:5}
+.search{flex:1;max-width:620px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:#fff;padding:11px 14px;outline:0}.search:focus{border-color:var(--turq)}
+.content{max-width:1200px;margin:auto;padding:34px 30px 70px}.hero{background:linear-gradient(135deg,#21e6d01a,#a879ff18);border:1px solid var(--line);border-radius:18px;padding:30px}
+.eyebrow{color:var(--turq);font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:800}h1{font-size:42px;margin:8px 0 10px}h2{margin-top:0}p{line-height:1.65;color:#d7e0ef}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.card:hover{border-color:#40516d}
+.section{margin-top:26px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#1c2b38;color:#a9f9ef;font-size:11px;margin:3px 4px 3px 0}
+.char{display:flex;gap:14px;align-items:flex-start}.avatar{width:74px;height:74px;border-radius:12px;background:linear-gradient(135deg,#182838,#242044);display:grid;place-items:center;font-size:28px;font-weight:900;color:var(--turq);overflow:hidden;flex:none}.avatar img{width:100%;height:100%;object-fit:cover}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.field{display:grid;gap:6px}.field label{font-size:12px;color:var(--muted)}.field input,.field textarea{width:100%;background:#090e16;border:1px solid var(--line);color:#fff;border-radius:8px;padding:10px;outline:0}.field textarea{min-height:110px;resize:vertical}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.full{grid-column:1/-1}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modalbox{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+.search-results{position:absolute;top:58px;left:28px;right:28px;max-width:620px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;z-index:20}.result{padding:10px;border-radius:8px;cursor:pointer}.result:hover{background:var(--panel2)}
+footer{margin-top:35px;color:#66758b;font-size:12px;text-align:center}
+@media(max-width:800px){.sidebar{width:220px}.content{padding:22px 16px}.topbar{padding:0 14px}.formgrid{grid-template-columns:1fr}h1{font-size:32px}}@media(max-width:600px){.sidebar{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="logo">ZRUK <span>WIKI</span></div><div class="subtitle">Universo editable</div>
+<div id="tree" class="tree"></div>
+<div class="sidebar-bottom">
+<button class="btn primary" onclick="openEditor('page')">＋ Nuevo apartado</button>
+<button class="btn" onclick="exportData()">Exportar copia</button>
+<label class="btn" style="text-align:center">Importar copia<input id="importFile" type="file" accept=".json" hidden></label>
+<button class="btn danger" onclick="resetData()">Restaurar contenido base</button>
+</div>
+</aside>
+<main class="main">
+<header class="topbar"><input id="search" class="search" placeholder="Buscar personajes, historia, mecánicas..."><button id="editToggle" class="btn" onclick="toggleEdit()">Modo edición: OFF</button></header>
+<div id="results" class="search-results" style="display:none"></div><section id="content" class="content"></section>
+</main></div>
+<div id="modal" class="modal"><div class="modalbox"><div class="section-head"><h2 id="modalTitle"></h2><button class="btn" onclick="closeModal()">Cerrar</button></div><div id="modalBody"></div></div></div>
+
+<script>
+const BASE={games:[{id:"game1",title:"Game 1",subtitle:"La primera historia de Zruk",intro:"Aquí se reúne toda la información del primer juego. Los apartados están dentro de Game 1 para que después puedan existir Game 2, Game 3, etc. con su propia estructura.",pages:[
+{id:"historia",title:"Historia",icon:"📖",text:"Historia y acontecimientos del Game 1.",content:"El Game 1 comienza con dos posibles protagonistas: Mizuhi y Exnilgo. Sus rutas iniciales son diferentes y más adelante se unen en una historia compartida.",order:1},
+{id:"personajes",title:"Personajes",icon:"👥",text:"Personajes principales y secundarios.",content:"Aquí se encuentran las fichas de los personajes.",order:2},
+{id:"mecanicas",title:"Mecánicas",icon:"⚙️",text:"Sistemas jugables y reglas.",content:"Incluye combate, K.O., Encarnaciones, Amplificaciones y sistemas de los personajes.",order:3},
+{id:"zruk",title:"Sistema Zruk",icon:"✦",text:"La energía Zruk y sus categorías.",content:"Zruk es la energía del mundo. Existen Zruk natural, monstruos mágicos, Zruk-natos y Zruk-artificiales. La clasificación elemental depende del número de elementos dominados.",order:4},
+{id:"mundo",title:"Mundo",icon:"🌍",text:"Lugares, reinos y zonas naturales.",content:"El Game 1 comienza alrededor del reino y después lleva a los personajes hacia pueblos, bosques, cuevas, montañas y otras zonas naturales.",order:5},
+{id:"final",title:"Final",icon:"👑",text:"Final del Game 1.",content:"El grupo derrota al rey. Después aparece una figura misteriosa en sombra que se lleva todo el material y los natos del lugar. Si Niru y el águila han sido encontrados, ambos persiguen a la figura antes de los créditos.",order:6},
+{id:"easter-eggs",title:"Easter eggs",icon:"🐾",text:"Secretos y referencias.",content:"Apartado reservado para secretos del juego.",order:7},
+{id:"pendientes",title:"Ideas / Pendiente",icon:"📝",text:"Cosas todavía por decidir.",content:"Aquí puedes anotar mecánicas, escenas, personajes o detalles que aún estén en desarrollo.",order:8}
+],characters:[
+{id:"exnilgo",name:"Exnilgo",age:"16",type:"Zruk-nato",role:"Protagonista",element:"Mejorar / energía turquesa",weapon:"Katana",enc:"Niru",amp:"Por concretar",personality:"Le gusta luchar, se burla de enemigos y compañeros y puede arriesgarse demasiado encadenando golpes.",text:"Puede mejorar velocidad, fuerza, sentidos y capacidades físicas. Los golpes consecutivos aumentan Mejorar y la energía turquesa. Cerca del límite su cuerpo se llena de energía y puede perder el control del ataque encadenado.",image:""},
+{id:"mizuhi",name:"Mizuhi",age:"14",type:"Zruk-nato",role:"Protagonista",element:"Fuego + agua",weapon:"Nunchakus",enc:"Águila",amp:"Chorros de agua hirviendo a presión",personality:"Alegre fuera del combate, serio luchando y muy vago. Puede quedarse dormido durante el combate.",text:"Puede combinar fuego y agua para crear vapor y ocultarse. También puede crear alas de fuego y agua y volar mediante cambios de temperatura.",image:""},
+{id:"aiko",name:"Aiko",age:"16",type:"Zruk-nata",role:"Aliada",element:"Plantas",weapon:"Dagas",enc:"Perro",amp:"Área de curación para aliados que envenena a enemigos",personality:"Amiga de Exnilgo desde hace mucho tiempo.",text:"Crea enredaderas y plantas para atacar o atrapar. Puede crear bayas de parálisis, veneno y curación. Su Encarnación permite crear plantas especiales.",image:""},
+{id:"ryuji",name:"Ryuji",age:"17",type:"Zruk-nato",role:"Aliado",element:"Elementos mediante piedras",weapon:"No especificada",enc:"Dragón",amp:"Todos los elementos desbloqueados simultáneamente",personality:"Amigo de Aiko. Su historia está relacionada con su madre, su padre artificial y el rey.",text:"Usa piedras elementales colocadas en su colgante. Su Encarnación permite usar dos elementos a la vez, uno mediante el dragón y otro mediante él mismo.",image:""},
+{id:"kurona",name:"Kurona",age:"17",type:"Zruk-nato",role:"Aliado",element:"No elemental",weapon:"Arco",enc:"Cuervo Jin",amp:"Flechas explosivas alrededor de enemigos",personality:"Nervioso y asustadizo ante el peligro. Es amigo de Mizuhi desde que este tenía 4 años.",text:"Crea flechas de diferentes tamaños y funciones y puede moverlas ligeramente con la mente para hacer curvas. Jin marca enemigos según su estado.",image:""}
+]}]};
+let data=load(),current="home",edit=false;
+function load(){try{return JSON.parse(localStorage.getItem("zrukWikiData"))||structuredClone(BASE)}catch{return structuredClone(BASE)}}
+function save(){localStorage.setItem("zrukWikiData",JSON.stringify(data))}
+function g(){return data.games[0]}
+function e(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function nav(id){current=id;renderTree();render()}
+function renderTree(){let x=g();document.getElementById("tree").innerHTML=`<button class="game ${current==="home"?"active":""}" onclick="nav('home')">▸ ${e(x.title)}</button>`+x.pages.sort((a,b)=>a.order-b.order).map(p=>`<button class="child ${current===p.id?"active":""}" onclick="nav('${p.id}')">${p.icon} ${e(p.title)}</button>`).join("")}
+function editBtns(type,id){return edit?`<div class="actions"><button class="btn" onclick="openEditor('${type}','${id}')">Editar</button><button class="btn danger" onclick="del('${type}','${id}')">Eliminar</button></div>`:""}
+function card(ch){return `<div class="card"><div class="char"><div class="avatar">${ch.image?`<img src="${e(ch.image)}">`:e(ch.name[0])}</div><div><h3>${e(ch.name)}</h3><span class="tag">${e(ch.role)}</span><span class="tag">${e(ch.type)}</span><div class="muted">Edad: ${e(ch.age)}</div></div></div><p>${e(ch.text)}</p><p><b>Elemento:</b> ${e(ch.element)}<br><b>Arma:</b> ${e(ch.weapon)}<br><b>Encarnación:</b> ${e(ch.enc)}<br><b>Amplificación:</b> ${e(ch.amp)}</p>${editBtns("character",ch.id)}</div>`}
+function render(){
+ let c=document.getElementById("content"),x=g();
+ if(current==="home"){c.innerHTML=`<div class="hero"><div class="eyebrow">Universo Zruk</div><h1>${e(x.title)}</h1><p>${e(x.intro)}</p>${edit?`<div class="actions"><button class="btn" onclick="openEditor('game')">Editar Game 1</button></div>`:""}</div><div class="section"><div class="section-head"><h2>Game 1</h2>${edit?`<button class="btn primary" onclick="openEditor('page')">＋ Añadir apartado</button>`:""}</div><div class="grid">${x.pages.map(p=>`<div class="card" onclick="nav('${p.id}')"><div style="font-size:27px">${p.icon}</div><h3>${e(p.title)}</h3><p class="muted">${e(p.text)}</p></div>`).join("")}</div></div><div class="section"><h2>Personajes</h2><div class="grid">${x.characters.map(card).join("")}</div></div><footer>Los cambios se guardan automáticamente en este navegador.</footer>`;return}
+ if(current==="personajes"){c.innerHTML=`<div class="hero"><div class="eyebrow">Game 1</div><h1>👥 Personajes</h1><p>Fichas editables de los personajes.</p></div><div class="section-head section"><h2>Personajes</h2>${edit?`<button class="btn primary" onclick="openEditor('character')">＋ Nuevo personaje</button>`:""}</div><div class="grid">${x.characters.map(card).join("")}</div>`;return}
+ let p=x.pages.find(z=>z.id===current);if(!p)return nav("home");
+ c.innerHTML=`<div class="hero"><div class="eyebrow">Game 1</div><h1>${e(p.icon)} ${e(p.title)}</h1><p>${e(p.text)}</p>${editBtns("page",p.id)}</div><div class="section"><div class="card"><div style="white-space:pre-wrap">${e(p.content)}</div></div></div>`
+}
+function toggleEdit(){edit=!edit;document.getElementById("editToggle").textContent="Modo edición: "+(edit?"ON":"OFF");render()}
+function modal(title,body){document.getElementById("modalTitle").textContent=title;document.getElementById("modalBody").innerHTML=body;document.getElementById("modal").classList.add("open")}
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+function fld(label,key,val,full=false){return `<div class="field ${full?"full":""}"><label>${label}</label><input id="f-${key}" value="${e(val||"")}"></div>`}
+function openEditor(type,id=""){
+ let x=g();
+ if(type==="game")modal("Editar Game 1",`<div class="formgrid">${fld("Título","title",x.title,true)}<div class="field full"><label>Descripción</label><textarea id="f-intro">${e(x.intro)}</textarea></div></div><div class="actions"><button class="btn primary" onclick="saveGame()">Guardar</button></div>`);
+ if(type==="page"){let p=x.pages.find(z=>z.id===id)||{title:"",icon:"📄",text:"",content:"",order:x.pages.length+1};modal(id?"Editar apartado":"Nuevo apartado",`<div class="formgrid">${fld("Título","title",p.title)}${fld("Icono","icon",p.icon)}<div class="field full"><label>Descripción corta</label><textarea id="f-text">${e(p.text)}</textarea></div><div class="field full"><label>Contenido</label><textarea id="f-content" style="min-height:220px">${e(p.content)}</textarea></div>${fld("Orden","order",p.order)}</div><div class="actions"><button class="btn primary" onclick="savePage('${id}')">Guardar</button></div>`)}
+ if(type==="character"){let q=x.characters.find(z=>z.id===id)||{name:"",age:"",type:"",role:"",element:"",weapon:"",enc:"",amp:"",personality:"",text:"",image:""};modal(id?"Editar personaje":"Nuevo personaje",`<div class="formgrid">${fld("Nombre","name",q.name)}${fld("Edad","age",q.age)}${fld("Tipo","type",q.type)}${fld("Rol","role",q.role)}${fld("Elemento / habilidad","element",q.element)}${fld("Arma","weapon",q.weapon)}${fld("Encarnación","enc",q.enc)}${fld("Amplificación","amp",q.amp)}${fld("Imagen (URL)","image",q.image)}<div class="field full"><label>Personalidad</label><textarea id="f-personality">${e(q.personality)}</textarea></div><div class="field full"><label>Descripción</label><textarea id="f-text" style="min-height:180px">${e(q.text)}</textarea></div></div><div class="actions"><button class="btn primary" onclick="saveChar('${id}')">Guardar</button></div>`)}
+}
+function slug(s){return(s||"nuevo").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-")+"-"+Date.now()}
+function saveGame(){let x=g();x.title=document.getElementById("f-title").value;x.intro=document.getElementById("f-intro").value;save();closeModal();renderTree();render()}
+function savePage(id){let x=g(),v={title:document.getElementById("f-title").value,icon:document.getElementById("f-icon").value,text:document.getElementById("f-text").value,content:document.getElementById("f-content").value,order:+document.getElementById("f-order").value||1};if(id)Object.assign(x.pages.find(p=>p.id===id),v);else{v.id=slug(v.title);x.pages.push(v);current=v.id}save();closeModal();renderTree();render()}
+function saveChar(id){let x=g(),q={};["name","age","type","role","element","weapon","enc","amp","image","personality","text"].forEach(k=>q[k]=document.getElementById("f-"+k).value);if(id)Object.assign(x.characters.find(c=>c.id===id),q);else{q.id=slug(q.name);x.characters.push(q)}save();closeModal();renderTree();render()}
+function del(type,id){if(!confirm("¿Eliminar este elemento?"))return;let x=g();if(type==="page"){x.pages=x.pages.filter(p=>p.id!==id);current="home"}else x.characters=x.characters.filter(c=>c.id!==id);save();renderTree();render()}
+function exportData(){let b=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="zruk-wiki-copia.json";a.click()}
+document.getElementById("importFile").onchange=function(){let r=new FileReader;r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.games)throw 0;data=x;save();current="home";renderTree();render();alert("Copia importada correctamente.")}catch{alert("Archivo no válido.")}};r.readAsText(this.files[0])}
+function resetData(){if(confirm("¿Restaurar el contenido base? Tus cambios locales se perderán.")){data=structuredClone(BASE);save();current="home";renderTree();render()}}
+const search=document.getElementById("search"),res=document.getElementById("results");
+search.oninput=()=>{let q=search.value.toLowerCase().trim();if(!q){res.style.display="none";return}let a=[],x=g();x.pages.forEach(p=>{if((p.title+p.text+p.content).toLowerCase().includes(q))a.push([p.id,p.title,"Apartado"])});x.characters.forEach(c=>{if(Object.values(c).join(" ").toLowerCase().includes(q))a.push(["personajes",c.name,"Personaje"])});res.innerHTML=a.slice(0,12).map(z=>`<div class="result" onclick="nav('${z[0]}');res.style.display='none';search.value=''"><b>${e(z[1])}</b><div class="muted">${e(z[2])}</div></div>`).join("")||`<div class="result muted">Sin resultados.</div>`;res.style.display="block"};
+renderTree();render();
+</script>
+</body>
+</html>
